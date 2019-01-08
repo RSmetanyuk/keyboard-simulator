@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/RSmetanyuk/keyboard-simulator/precache-manifest.d8029a42563c3a424e294d896414ade2.js"
+  "/RSmetanyuk/keyboard-simulator/precache-manifest.4dee1d34127ad49d105717f8b5ea21f3.js"
 );
 
 workbox.clientsClaim();

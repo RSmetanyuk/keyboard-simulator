@@ -1,0 +1,23 @@
+.display {
+  width: 800px;
+  height: 320px;
+  background-color: #111;
+  margin: 0px auto;
+  border-radius: 9px;
+  padding: 30px;
+  color: #eee;
+}
+.screen {
+  width: 750px;
+  height: 290px;
+  background-color: #eee;
+  margin: auto;
+  padding: 10px;
+  color: #111;
+}
+.hinge {
+  height: 10px;
+  width: 700px;
+  background-color: #000;
+  margin: auto;
+}

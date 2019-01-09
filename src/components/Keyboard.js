@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Keyboard.css";
+import { connect } from "react-redux";
 
 class Keyboard extends Component {
   render() {
@@ -77,8 +78,16 @@ class Keyboard extends Component {
 
           <div className="key tab">Tab</div>
 
-          <div className="key letter">Q</div>
-          <div className="key letter">W</div>
+          <div
+            className={`key letter ${this.props.lastSymbol === "q" && "red"}`}
+          >
+            Q
+          </div>
+          <div
+            className={`key letter ${this.props.lastSymbol === "w" && "green"}`}
+          >
+            W
+          </div>
           <div className="key letter">E</div>
           <div className="key letter">R</div>
           <div className="key letter">T</div>
@@ -177,4 +186,19 @@ class Keyboard extends Component {
   }
 }
 
-export default Keyboard;
+const mapStateToProps = state => {
+  return {
+    lastSymbol: state.lastSymbol
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onPress: () => dispatch({ type: "KEY_PRESS" })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Keyboard);

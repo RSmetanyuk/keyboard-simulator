@@ -7,7 +7,12 @@ class Display extends Component {
     return (
       <React.Fragment>
         <div className="display">
-          <div className="screen">{this.props.text}</div>
+          <textarea
+            type="text"
+            className="screen"
+            value={this.props.text}
+            onChange={this.props.onChange}
+          />
         </div>
         <div className="hinge" />
       </React.Fragment>
@@ -21,4 +26,17 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Display);
+const mapDispatchToProps = dispatch => {
+  return {
+    onChange: e =>
+      dispatch({
+        type: "ON_CHANGE",
+        e: e.target
+      })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Display);

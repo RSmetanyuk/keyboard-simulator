@@ -1,28 +1,46 @@
 const initialState = {
-  text: "12345",
+  text:
+    "This is the keyboard blind-typing simulator.\nFor training, you must set the cursor in text and try to repeat the following text.\nYou may paste or type your own text for training here.",
   cursorPosition: 0,
-  lastSymbol: ""
+  lastMatchedSymbol: "",
+  lastMatched: false,
+  rotation: true
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type === "ON_CHANGE") {
-    // state.text.length
-    // action.e.selectionStart
+  const newState = { ...state };
 
-    // action.e.setSelectionRange(
-    //   action.cursorPosition - 1,
-    //   action.cursorPosition - 1
-    // );
-    console.log(JSON.stringify(state));
-    return {
-      ...state,
-      text: action.e.newText,
-      cursorPosition: action.e.selectionStart,
-      lastSymbol: action.e.value.substr(action.e.selectionStart - 1, 1)
-    };
+  switch (action.type) {
+    case "ON_CHANGE":
+      //const deleating = state.text.length > action.e.value.length;
+
+      const typing = action.e.value.length > state.text.length; // what if paste more than one ?
+      const training = typing && !(action.e.selectionStart > state.text.length);
+
+      // console.log("typing", typing);
+      // console.log("deleating", deleating);
+      // console.log("training", training);
+
+      newState.rotation = !state.rotation;
+      newState.text = training ? state.text : action.e.value;
+      newState.cursorPosition = action.e.selectionStart;
+
+      newState.lastMatchedSymbol = training
+        ? action.e.value.substr(action.e.selectionStart - 1, 1)
+        : "";
+
+      //console.log(state.text.substr(newState.cursorPosition - 1, 1));
+
+      newState.lastMatched = training
+        ? newState.lastMatchedSymbol ===
+          state.text.substr(newState.cursorPosition - 1, 1)
+        : false;
+
+      //console.log(JSON.stringify(newState));
+      break;
   }
 
-  return state;
+  return newState;
 };
 
 export default reducer;

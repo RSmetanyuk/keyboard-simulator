@@ -21,3 +21,9 @@
   background-color: #000;
   margin: auto;
 }
+.lastMatchedFalse {
+  box-shadow: inset 0px 0px 16px 2px rgb(255, 0, 0);
+}
+.lastMatchedTrue {
+  box-shadow: inset 0px 0px 16px 2px rgb(0, 255, 0);
+}

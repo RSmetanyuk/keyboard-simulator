@@ -79,12 +79,14 @@ class Keyboard extends Component {
           <div className="key tab">Tab</div>
 
           <div
-            className={`key letter ${this.props.lastSymbol === "q" && "red"}`}
+            className={`key letter ${this.props.lastMatchedSymbol === "q" &&
+              "red"}`}
           >
             Q
           </div>
           <div
-            className={`key letter ${this.props.lastSymbol === "w" && "green"}`}
+            className={`key letter ${this.props.lastMatchedSymbol === "w" &&
+              "green"}`}
           >
             W
           </div>
@@ -188,7 +190,7 @@ class Keyboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    lastSymbol: state.lastSymbol
+    lastMatchedSymbol: state.lastMatchedSymbol
   };
 };
 

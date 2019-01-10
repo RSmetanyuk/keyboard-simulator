@@ -8,8 +8,15 @@ class Display extends Component {
       <React.Fragment>
         <div className="display">
           <textarea
+            ref="txt"
             type="text"
-            className="screen"
+            data-rotation={this.props.rotation}
+            className={`screen ${
+              this.props.lastMatchedSymbol
+                ? (this.props.lastMatched && "lastMatchedTrue") ||
+                  (!this.props.lastMatched && "lastMatchedFalse")
+                : ""
+            }`}
             value={this.props.text}
             onChange={this.props.onChange}
           />
@@ -18,11 +25,23 @@ class Display extends Component {
       </React.Fragment>
     );
   }
+  componentDidUpdate() {
+    this.refs.txt.setSelectionRange(
+      this.props.cursorPosition,
+      this.props.cursorPosition
+    );
+    //console.log(this.props.rotation);
+  }
+  co;
 }
 
 const mapStateToProps = state => {
   return {
-    text: state.text
+    text: state.text,
+    rotation: state.rotation,
+    cursorPosition: state.cursorPosition,
+    lastMatched: state.lastMatched,
+    lastMatchedSymbol: state.lastMatchedSymbol
   };
 };
 

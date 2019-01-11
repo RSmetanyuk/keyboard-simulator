@@ -233,28 +233,50 @@ class Keyboard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    clearOldKeyRedMark(this.refs[prevProps.matchedKeyCode]);
-    addKeyRedMark(
+    clearOldKeyColorMark(
+      this.refs[prevProps.matchedKeyCode],
+      this.refs[prevProps.matchedTarget.toUpperCase().charCodeAt(0)]
+    );
+    addKeyColorMark(
       this.props.matchedKey,
       !this.props.matchedResult,
-      this.refs[this.props.matchedKeyCode]
+      this.refs[this.props.matchedKeyCode],
+      this.refs[this.props.matchedTarget.toUpperCase().charCodeAt(0)]
     );
   }
 }
 
-const clearOldKeyRedMark = prevKey => {
-  if (prevKey) prevKey.classList.remove("red");
+const clearOldKeyColorMark = (prevKeyRed, prevKeyGreen) => {
+  if (prevKeyRed === prevKeyGreen) {
+    if (prevKeyRed) prevKeyRed.classList.remove("yellow");
+  } else {
+    if (prevKeyRed) prevKeyRed.classList.remove("red");
+    if (prevKeyGreen) prevKeyGreen.classList.remove("green");
+  }
 };
 
-const addKeyRedMark = (matchedKey, matchedTrue, key) => {
-  if (matchedKey && matchedTrue && key) key.classList.add("red");
+const addKeyColorMark = (matchedKey, matchedFalse, keyRed, keyGreen) => {
+  if (matchedKey && matchedFalse) {
+    if (keyRed === keyGreen) {
+      keyRed && keyRed.classList.add("yellow");
+    } else {
+      keyRed && keyRed.classList.add("red");
+      keyGreen && keyGreen.classList.add("green");
+    }
+  }
 };
+
+// const addKeyGreenMark = (matchedKey, matchedTrue, key) => {
+//   const code = matchedKey.toUpperCase().charCodeAt(0);
+//   if (matchedKey && matchedTrue && key) console.log("green", code); // key.classList.add("green");
+// };
 
 const mapStateToProps = state => {
   return {
     matchedKeyCode: state.matchedKeyCode,
     matchedResult: state.matchedResult,
-    matchedKey: state.matchedKey
+    matchedKey: state.matchedKey,
+    matchedTarget: state.matchedTarget
     //cycleTtrigger: state.cycleTtrigger
   };
 };

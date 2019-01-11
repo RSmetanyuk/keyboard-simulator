@@ -29,3 +29,6 @@
 .greenFrame {
   box-shadow: inset 0px 0px 16px 2px rgb(0, 255, 0);
 }
+.yellowFrame {
+  box-shadow: inset 0px 0px 16px 2px rgb(255, 238, 0);
+}

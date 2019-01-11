@@ -233,17 +233,22 @@ class Keyboard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const prev = prevProps.matchedKeyCode;
-    const cur = this.refs[this.props.matchedKeyCode];
-
-    if (this.refs[prev]) this.refs[prev].classList.remove("red");
-
-    if (this.props.matchedKey && !this.props.matchedResult && cur)
-      cur.classList.add("red");
-
-    //console.log("keyboaard props", this.props);
+    clearOldKeyRedMark(this.refs[prevProps.matchedKeyCode]);
+    addKeyRedMark(
+      this.props.matchedKey,
+      !this.props.matchedResult,
+      this.refs[this.props.matchedKeyCode]
+    );
   }
 }
+
+const clearOldKeyRedMark = prevKey => {
+  if (prevKey) prevKey.classList.remove("red");
+};
+
+const addKeyRedMark = (matchedKey, matchedTrue, key) => {
+  if (matchedKey && matchedTrue && key) key.classList.add("red");
+};
 
 const mapStateToProps = state => {
   return {

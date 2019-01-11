@@ -8,12 +8,6 @@ class Keyboard extends Component {
       <div className="keyboard">
         <div className="logo">RS</div>
 
-        <div className="lights">
-          <span>1</span>
-          <span>A</span>
-          <span>V</span>
-        </div>
-
         <div className="section-a">
           <div className="key function space1">Esc</div>
 
@@ -31,7 +25,6 @@ class Keyboard extends Component {
           <div className="key function">F10</div>
           <div className="key function">F11</div>
           <div className="key function">F12</div>
-          {/*END FUNCTION KEYS*/}
 
           <div className="key num dual" ref="192">
             ~<br />`
@@ -130,7 +123,7 @@ class Keyboard extends Component {
           <div className="key letter" ref="68">
             D
           </div>
-          <div className="key letter" ref="70">
+          <div className="key perfored letter" ref="70">
             F
           </div>
           <div className="key letter" ref="71">
@@ -139,7 +132,7 @@ class Keyboard extends Component {
           <div className="key letter" ref="72">
             H
           </div>
-          <div className="key letter" ref="74">
+          <div className="key perfored letter" ref="74">
             J
           </div>
           <div className="key letter" ref="75">
@@ -197,34 +190,6 @@ class Keyboard extends Component {
           <div className="key">Prnt</div>
           <div className="key ctrl">Ctrl</div>
         </div>
-        {/*end section-a*/}
-
-        <div className="section-b">
-          <div className="key function small">Prnt Scrn</div>
-          <div className="key function small">Scroll Lock</div>
-          <div className="key function small">Pause Break</div>
-
-          <div className="sec-func">
-            <div className="key">Insert</div>
-            <div className="key">Home</div>
-            <div className="key dual">Page Up</div>
-            <div className="key">Del</div>
-            <div className="key">End</div>
-            <div className="key dual">Page Down</div>
-
-            <div className="arrows">
-              <div className="key hidden" />
-              <div className="key">^</div>
-              <div className="key hidden" />
-              <div className="key">{"<"}</div>
-              <div className="key">v</div>
-              <div className="key">></div>
-            </div>
-            {/* end arrows */}
-          </div>
-          {/*end sec-func*/}
-        </div>
-        {/*end section-b*/}
       </div>
     );
   }

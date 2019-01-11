@@ -17,33 +17,10 @@
   font-size: 30px;
   line-height: 40px;
   text-align: center;
-  margin: -20px auto 10px auto;
+  margin: -10px auto 5px auto;
   border-radius: 40px;
 }
 
-.lights {
-  float: right;
-  position: relative;
-  top: -45px;
-  right: 8px;
-  padding: 0;
-  margin: 0;
-}
-.lights span {
-  margin: 0 20px 0 20px;
-  padding: 0;
-  text-align: center;
-}
-.lights span:after {
-  content: "";
-  width: 11px;
-  height: 8px;
-  top: 22px;
-  margin-left: -9px;
-  background-color: #dbb921;
-  position: absolute;
-  border-radius: 3px;
-}
 .key {
   width: 40px;
   height: 40px;
@@ -59,16 +36,17 @@
   cursor: pointer;
   transition: box-shadow 0.7s ease;
 }
+
+.perfored {
+  background-color: rgb(32, 32, 32);
+}
+
 .section-a {
   width: 650px;
   height: 260px;
   float: left;
   margin-top: 21px;
-}
-.section-b {
-  width: 150px;
-  height: 260px;
-  float: left;
+  margin-left: 93px;
 }
 
 .function {
@@ -140,28 +118,7 @@
 .space {
   width: 234px;
 }
-.arrows {
-  position: relative;
-  top: 42px;
-}
-.sec-func .key {
-  width: 32px;
-  font-size: 10px;
-  text-align: left;
-  line-height: 40px;
-  float: left;
-}
-.sec-func div.dual {
-  line-height: 20px;
-}
-.arrows .key {
-  text-align: center;
-  padding-left: 7px;
-  margin-left: 2px;
-}
-.hidden {
-  visibility: hidden;
-}
+
 .red {
   background-color: palevioletred;
 }

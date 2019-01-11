@@ -1,6 +1,6 @@
 const initialState = {
   text:
-    "This is the keyboard blind-typing simulator.\nFor training, set the cursor in text and try to repeat the following text.\nYou may paste or type your own text for training here.",
+    "This is the keyboard blind-typing simulator.\nFor training, set the cursor in front of text and try to repeat the text.\nYou may paste or type your own text for training here.\nAther languiges and special charscters havn't keyboard suggestion of right key.",
   cursorPosition: 0,
   matchedKey: "",
   lastKeyCode: undefined,
@@ -42,7 +42,6 @@ const reducer = (state = initialState, action) => {
 
     case "ON_KEY_DOWN":
       newState.lastKeyCode = action.keyCode;
-
       break;
   }
 

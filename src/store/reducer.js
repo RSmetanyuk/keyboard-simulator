@@ -7,7 +7,6 @@ const initialState = {
   matchedKeyCode: undefined,
   matchedTarget: "",
   matchedResult: false
-  // cycleTtrigger: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,7 +21,6 @@ const reducer = (state = initialState, action) => {
       const typing = newLength > oldLength;
       const training = typing && !(action.e.selectionStart > oldLength);
 
-      // newState.cycleTtrigger = !state.cycleTtrigger;
       newState.text = training ? state.text : newText;
       newState.cursorPosition = action.e.selectionStart;
 

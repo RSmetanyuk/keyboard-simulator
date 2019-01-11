@@ -5,10 +5,7 @@ import { connect } from "react-redux";
 class Keyboard extends Component {
   render() {
     return (
-      <div
-        className="keyboard"
-        //data-update-trigger={this.props.cycleTtrigger}
-      >
+      <div className="keyboard">
         <div className="logo">RS</div>
 
         <div className="lights">
@@ -266,18 +263,12 @@ const addKeyColorMark = (matchedKey, matchedFalse, keyRed, keyGreen) => {
   }
 };
 
-// const addKeyGreenMark = (matchedKey, matchedTrue, key) => {
-//   const code = matchedKey.toUpperCase().charCodeAt(0);
-//   if (matchedKey && matchedTrue && key) console.log("green", code); // key.classList.add("green");
-// };
-
 const mapStateToProps = state => {
   return {
     matchedKeyCode: state.matchedKeyCode,
     matchedResult: state.matchedResult,
     matchedKey: state.matchedKey,
     matchedTarget: state.matchedTarget
-    //cycleTtrigger: state.cycleTtrigger
   };
 };
 

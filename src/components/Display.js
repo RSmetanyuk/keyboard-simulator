@@ -10,13 +10,7 @@ class Display extends Component {
           <textarea
             ref="txt"
             type="text"
-            //data-update-trigger={this.props.cycleTtrigger}
-            className={`screen ${
-              this.props.matchedKey
-                ? (this.props.matchedResult && "greenFrame") ||
-                  (!this.props.matchedResult && "redFrame")
-                : ""
-            }`}
+            className="screen"
             value={this.props.text}
             onChange={this.props.onChange}
             onKeyDown={this.props.onKeyDown}
@@ -29,7 +23,14 @@ class Display extends Component {
 
   componentDidUpdate() {
     setCursorPosition(this.refs.txt, this.props.cursorPosition);
-    // console.log("upd display ");
+    removeFrameColor(this.refs.txt);
+    setFrameColor(
+      this.refs.txt,
+      this.props.matchedKey,
+      this.props.matchedResult,
+      this.props.matchedKey,
+      this.props.matchedTarget
+    );
   }
 }
 
@@ -37,13 +38,31 @@ const setCursorPosition = (element, position) => {
   element.setSelectionRange(position, position);
 };
 
+const removeFrameColor = screen => {
+  screen.classList.remove("yellowFrame");
+  screen.classList.remove("greenFrame");
+  screen.classList.remove("redFrame");
+};
+
+const setFrameColor = (screen, matched, result, key, target) => {
+  if (matched) {
+    if (key === target) {
+      screen.classList.add("greenFrame");
+    } else if (key.toUpperCase() === target.toUpperCase()) {
+      screen.classList.add("yellowFrame");
+    } else {
+      screen.classList.add("redFrame");
+    }
+  }
+};
+
 const mapStateToProps = state => {
   return {
     text: state.text,
-    //cycleTtrigger: state.cycleTtrigger,
     cursorPosition: state.cursorPosition,
     matchedResult: state.matchedResult,
-    matchedKey: state.matchedKey
+    matchedKey: state.matchedKey,
+    matchedTarget: state.matchedTarget
   };
 };
 

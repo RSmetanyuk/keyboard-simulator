@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 class Keyboard extends Component {
   render() {
     return (
-      <div className="keyboard">
+      <div className="keyboard" data-update-trigger={this.props.cycleTtrigger}>
         <div className="logo">RS</div>
 
         <div className="lights">
@@ -33,11 +33,11 @@ class Keyboard extends Component {
           <div className="key function">F12</div>
           {/*END FUNCTION KEYS*/}
 
-          <div className="key num dual">
+          <div className="key num dual" ref="192">
             ~<br />`
           </div>
 
-          <div className="key num dual">
+          <div className="key num dual" ref="49">
             !<br />1
           </div>
           <div className="key num dual">
@@ -79,18 +79,18 @@ class Keyboard extends Component {
           <div className="key tab">Tab</div>
 
           <div
-            className={`key letter ${this.props.lastMatchedSymbol === "q" &&
-              "red"}`}
+            className={`key letter ${this.props.matchedKey === "q" && "red"}`}
           >
             Q
           </div>
           <div
-            className={`key letter ${this.props.lastMatchedSymbol === "w" &&
-              "green"}`}
+            className={`key letter ${this.props.matchedKey === "w" && "green"}`}
           >
             W
           </div>
-          <div className="key letter">E</div>
+          <div className="key letter" ref="E">
+            E
+          </div>
           <div className="key letter">R</div>
           <div className="key letter">T</div>
           <div className="key letter">Y</div>
@@ -186,21 +186,22 @@ class Keyboard extends Component {
       </div>
     );
   }
+
+  componentDidUpdate() {
+    //   setKeyRedColor(this.refs["E"]);
+  }
 }
 
 const mapStateToProps = state => {
   return {
-    lastMatchedSymbol: state.lastMatchedSymbol
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onPress: () => dispatch({ type: "KEY_PRESS" })
+    matchedKey: state.matchedKey,
+    matchedTarget: state.matchedTarget,
+    matchedResult: state.matchedResult,
+    cycleTtrigger: state.cycleTtrigger
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Keyboard);

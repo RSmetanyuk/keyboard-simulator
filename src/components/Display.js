@@ -10,11 +10,11 @@ class Display extends Component {
           <textarea
             ref="txt"
             type="text"
-            data-rotation={this.props.rotation}
+            data-update-trigger={this.props.cycleTtrigger}
             className={`screen ${
-              this.props.lastMatchedSymbol
-                ? (this.props.lastMatched && "lastMatchedTrue") ||
-                  (!this.props.lastMatched && "lastMatchedFalse")
+              this.props.matchedKey
+                ? (this.props.matchedResult && "greenFrame") ||
+                  (!this.props.matchedResult && "redFrame")
                 : ""
             }`}
             value={this.props.text}
@@ -25,23 +25,23 @@ class Display extends Component {
       </React.Fragment>
     );
   }
+
   componentDidUpdate() {
-    this.refs.txt.setSelectionRange(
-      this.props.cursorPosition,
-      this.props.cursorPosition
-    );
-    //console.log(this.props.rotation);
+    setCursorPosition(this.refs.txt, this.props.cursorPosition);
   }
-  co;
 }
+
+const setCursorPosition = (element, position) => {
+  element.setSelectionRange(position, position);
+};
 
 const mapStateToProps = state => {
   return {
     text: state.text,
-    rotation: state.rotation,
+    cycleTtrigger: state.cycleTtrigger,
     cursorPosition: state.cursorPosition,
-    lastMatched: state.lastMatched,
-    lastMatchedSymbol: state.lastMatchedSymbol
+    matchedResult: state.matchedResult,
+    matchedKey: state.matchedKey
   };
 };
 
@@ -52,6 +52,11 @@ const mapDispatchToProps = dispatch => {
         type: "ON_CHANGE",
         e: e.target
       })
+    // onKeyPress: b =>
+    //   dispatch({
+    //     type: "ON_KEY_PRESS",
+    //     b: b
+    //   })
   };
 };
 

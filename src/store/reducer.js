@@ -1,10 +1,11 @@
 const initialState = {
   text:
-    "This is the keyboard blind-typing simulator.\nFor training, you must set the cursor in text and try to repeat the following text.\nYou may paste or type your own text for training here.",
+    "This is the keyboard blind-typing simulator.\nFor training, set the cursor in text and try to repeat the following text.\nYou may paste or type your own text for training here.",
   cursorPosition: 0,
-  lastMatchedSymbol: "",
-  lastMatched: false,
-  rotation: true
+  matchedKey: "",
+  matchedTarget: "",
+  matchedResult: false,
+  cycleTtrigger: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,32 +13,34 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case "ON_CHANGE":
-      //const deleating = state.text.length > action.e.value.length;
+      const oldLength = state.text.length;
+      const newLength = action.e.value.length;
+      const newText = action.e.value;
 
-      const typing = action.e.value.length > state.text.length; // what if paste more than one ?
-      const training = typing && !(action.e.selectionStart > state.text.length);
+      const typing = newLength > oldLength;
+      const training = typing && !(action.e.selectionStart > oldLength);
 
-      // console.log("typing", typing);
-      // console.log("deleating", deleating);
-      // console.log("training", training);
-
-      newState.rotation = !state.rotation;
-      newState.text = training ? state.text : action.e.value;
+      newState.cycleTtrigger = !state.cycleTtrigger;
+      newState.text = training ? state.text : newText;
       newState.cursorPosition = action.e.selectionStart;
 
-      newState.lastMatchedSymbol = training
-        ? action.e.value.substr(action.e.selectionStart - 1, 1)
+      newState.matchedKey = training
+        ? newText.substr(action.e.selectionStart - 1, 1)
         : "";
 
-      //console.log(state.text.substr(newState.cursorPosition - 1, 1));
+      newState.matchedTarget = training
+        ? state.text.substr(newState.cursorPosition - 1, 1)
+        : "";
 
-      newState.lastMatched = training
-        ? newState.lastMatchedSymbol ===
-          state.text.substr(newState.cursorPosition - 1, 1)
+      newState.matchedResult = training
+        ? newState.matchedKey === newState.matchedTarget
         : false;
 
-      //console.log(JSON.stringify(newState));
       break;
+
+    // case "ON_KEY_PRESS":
+    //   console.log(action.b.target.selectionStart);
+    //   break;
   }
 
   return newState;

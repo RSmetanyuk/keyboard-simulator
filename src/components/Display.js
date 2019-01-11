@@ -10,7 +10,7 @@ class Display extends Component {
           <textarea
             ref="txt"
             type="text"
-            data-update-trigger={this.props.cycleTtrigger}
+            //data-update-trigger={this.props.cycleTtrigger}
             className={`screen ${
               this.props.matchedKey
                 ? (this.props.matchedResult && "greenFrame") ||
@@ -19,6 +19,7 @@ class Display extends Component {
             }`}
             value={this.props.text}
             onChange={this.props.onChange}
+            onKeyDown={this.props.onKeyDown}
           />
         </div>
         <div className="hinge" />
@@ -28,6 +29,7 @@ class Display extends Component {
 
   componentDidUpdate() {
     setCursorPosition(this.refs.txt, this.props.cursorPosition);
+    // console.log("upd display ");
   }
 }
 
@@ -38,7 +40,7 @@ const setCursorPosition = (element, position) => {
 const mapStateToProps = state => {
   return {
     text: state.text,
-    cycleTtrigger: state.cycleTtrigger,
+    //cycleTtrigger: state.cycleTtrigger,
     cursorPosition: state.cursorPosition,
     matchedResult: state.matchedResult,
     matchedKey: state.matchedKey
@@ -51,12 +53,12 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: "ON_CHANGE",
         e: e.target
+      }),
+    onKeyDown: e =>
+      dispatch({
+        type: "ON_KEY_DOWN",
+        keyCode: e.keyCode
       })
-    // onKeyPress: b =>
-    //   dispatch({
-    //     type: "ON_KEY_PRESS",
-    //     b: b
-    //   })
   };
 };
 

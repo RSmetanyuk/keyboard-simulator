@@ -3,9 +3,11 @@ const initialState = {
     "This is the keyboard blind-typing simulator.\nFor training, set the cursor in text and try to repeat the following text.\nYou may paste or type your own text for training here.",
   cursorPosition: 0,
   matchedKey: "",
+  lastKeyCode: undefined,
+  matchedKeyCode: undefined,
   matchedTarget: "",
-  matchedResult: false,
-  cycleTtrigger: true
+  matchedResult: false
+  // cycleTtrigger: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,7 +22,7 @@ const reducer = (state = initialState, action) => {
       const typing = newLength > oldLength;
       const training = typing && !(action.e.selectionStart > oldLength);
 
-      newState.cycleTtrigger = !state.cycleTtrigger;
+      // newState.cycleTtrigger = !state.cycleTtrigger;
       newState.text = training ? state.text : newText;
       newState.cursorPosition = action.e.selectionStart;
 
@@ -36,11 +38,14 @@ const reducer = (state = initialState, action) => {
         ? newState.matchedKey === newState.matchedTarget
         : false;
 
+      newState.matchedKeyCode = state.lastKeyCode;
+
       break;
 
-    // case "ON_KEY_PRESS":
-    //   console.log(action.b.target.selectionStart);
-    //   break;
+    case "ON_KEY_DOWN":
+      newState.lastKeyCode = action.keyCode;
+
+      break;
   }
 
   return newState;

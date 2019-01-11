@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 class Keyboard extends Component {
   render() {
     return (
-      <div className="keyboard" data-update-trigger={this.props.cycleTtrigger}>
+      <div
+        className="keyboard"
+        //data-update-trigger={this.props.cycleTtrigger}
+      >
         <div className="logo">RS</div>
 
         <div className="lights">
@@ -40,37 +43,37 @@ class Keyboard extends Component {
           <div className="key num dual" ref="49">
             !<br />1
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="50">
             @<br />2
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="51">
             #<br />3
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="52">
             $<br />4
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="53">
             %<br />5
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="54">
             ^<br />6
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="55">
             &<br />7
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="56">
             *<br />8
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="57">
             (<br />9
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="48">
             )<br />0
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="189">
             _<br />-
           </div>
-          <div className="key num dual">
+          <div className="key num dual" ref="187">
             +<br />=
           </div>
           <div className="key backspace">Backspace</div>
@@ -78,78 +81,120 @@ class Keyboard extends Component {
 
           <div className="key tab">Tab</div>
 
-          <div
-            className={`key letter ${this.props.matchedKey === "q" && "red"}`}
-          >
+          <div className="key letter" ref="81">
             Q
           </div>
-          <div
-            className={`key letter ${this.props.matchedKey === "w" && "green"}`}
-          >
+          <div className="key letter" ref="87">
             W
           </div>
-          <div className="key letter" ref="E">
+          <div className="key letter" ref="69">
             E
           </div>
-          <div className="key letter">R</div>
-          <div className="key letter">T</div>
-          <div className="key letter">Y</div>
-          <div className="key letter">U</div>
-          <div className="key letter">I</div>
-          <div className="key letter">O</div>
-          <div className="key letter">P</div>
-          <div className="key dual">
+          <div className="key letter" ref="82">
+            R
+          </div>
+          <div className="key letter" ref="84">
+            T
+          </div>
+          <div className="key letter" ref="89">
+            Y
+          </div>
+          <div className="key letter" ref="85">
+            U
+          </div>
+          <div className="key letter" ref="73">
+            I
+          </div>
+          <div className="key letter" ref="79">
+            O
+          </div>
+          <div className="key letter" ref="80">
+            P
+          </div>
+          <div className="key dual" ref="219">
             {"{"}
             <br />[
           </div>
-          <div className="key dual">
+          <div className="key dual" ref="221">
             }<br />]
           </div>
-          <div className="key letter dual slash">
+          <div className="key letter dual slash" ref="220">
             |<br />\
           </div>
           <div className="key caps">
             Caps <br /> Lock
           </div>
-          <div className="key letter">A</div>
-          <div className="key letter">S</div>
-          <div className="key letter">D</div>
-          <div className="key letter">F</div>
-          <div className="key letter">G</div>
-          <div className="key letter">H</div>
-          <div className="key letter">J</div>
-          <div className="key letter">K</div>
-          <div className="key letter">L</div>
-          <div className="key dual">
+          <div className="key letter" ref="65">
+            A
+          </div>
+          <div className="key letter" ref="83">
+            S
+          </div>
+          <div className="key letter" ref="68">
+            D
+          </div>
+          <div className="key letter" ref="70">
+            F
+          </div>
+          <div className="key letter" ref="71">
+            G
+          </div>
+          <div className="key letter" ref="72">
+            H
+          </div>
+          <div className="key letter" ref="74">
+            J
+          </div>
+          <div className="key letter" ref="75">
+            K
+          </div>
+          <div className="key letter" ref="76">
+            L
+          </div>
+          <div className="key dual" ref="186">
             :<br />;
           </div>
-          <div className="key dual">
+          <div className="key dual" ref="222">
             "<br />'
           </div>
           <div className="key enter">Enter</div>
 
           <div className="key shift left">Shift</div>
-          <div className="key letter">Z</div>
-          <div className="key letter">X</div>
-          <div className="key letter">C</div>
-          <div className="key letter">V</div>
-          <div className="key letter">B</div>
-          <div className="key letter">N</div>
-          <div className="key letter">M</div>
-          <div className="key dual">
+          <div className="key letter" ref="90">
+            Z
+          </div>
+          <div className="key letter" ref="88">
+            X
+          </div>
+          <div className="key letter" ref="67">
+            C
+          </div>
+          <div className="key letter" ref="86">
+            V
+          </div>
+          <div className="key letter" ref="66">
+            B
+          </div>
+          <div className="key letter" ref="78">
+            N
+          </div>
+          <div className="key letter" ref="77">
+            M
+          </div>
+          <div className="key dual" ref="188">
             {"<"} <br />,
           </div>
-          <div className="key dual">
+          <div className="key dual" ref="190">
             ><br />.
           </div>
-          <div className="key dual">
+          <div className="key dual" ref="191">
             ?<br />/
           </div>
           <div className="key shift right">Shift</div>
           <div className="key ctrl">Ctrl</div>
           <div className="key">&hearts;</div>
           <div className="key">Alt</div>
-          <div className="key space" />
+          <div className="key space" ref="32" />
           <div className="key">Alt</div>
           <div className="key">&hearts;</div>
           <div className="key">Prnt</div>
@@ -187,17 +232,25 @@ class Keyboard extends Component {
     );
   }
 
-  componentDidUpdate() {
-    //   setKeyRedColor(this.refs["E"]);
+  componentDidUpdate(prevProps) {
+    const prev = prevProps.matchedKeyCode;
+    const cur = this.refs[this.props.matchedKeyCode];
+
+    if (this.refs[prev]) this.refs[prev].classList.remove("red");
+
+    if (this.props.matchedKey && !this.props.matchedResult && cur)
+      cur.classList.add("red");
+
+    //console.log("keyboaard props", this.props);
   }
 }
 
 const mapStateToProps = state => {
   return {
-    matchedKey: state.matchedKey,
-    matchedTarget: state.matchedTarget,
+    matchedKeyCode: state.matchedKeyCode,
     matchedResult: state.matchedResult,
-    cycleTtrigger: state.cycleTtrigger
+    matchedKey: state.matchedKey
+    //cycleTtrigger: state.cycleTtrigger
   };
 };
 

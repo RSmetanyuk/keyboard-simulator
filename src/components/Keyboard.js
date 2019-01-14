@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import "./Keyboard.css";
 import { connect } from "react-redux";
+import * as actionCreator from "../store/actions";
 
 class Keyboard extends Component {
   render() {
     return (
       <div className="keyboard">
-        <div className="logo">RS</div>
+        <button
+          className="button"
+          onClick={() => this.props.getRandomText(this.props.currentArticle)}
+        >
+          RS
+        </button>
 
         <div className="section-a">
           <div className="key function space1">Esc</div>
@@ -233,11 +239,18 @@ const mapStateToProps = state => {
     matchedKeyCode: state.matchedKeyCode,
     matchedResult: state.matchedResult,
     matchedKey: state.matchedKey,
-    matchedTarget: state.matchedTarget
+    matchedTarget: state.matchedTarget,
+    currentArticle: state.currentArticle
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getRandomText: val => dispatch(actionCreator.getArticles(val))
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Keyboard);

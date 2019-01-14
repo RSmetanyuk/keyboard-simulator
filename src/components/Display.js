@@ -27,7 +27,6 @@ class Display extends Component {
     setFrameColor(
       this.refs.txt,
       this.props.matchedKey,
-      this.props.matchedResult,
       this.props.matchedKey,
       this.props.matchedTarget
     );
@@ -44,7 +43,7 @@ const removeFrameColor = screen => {
   screen.classList.remove("redFrame");
 };
 
-const setFrameColor = (screen, matched, result, key, target) => {
+const setFrameColor = (screen, matched, key, target) => {
   if (matched) {
     if (key === target) {
       screen.classList.add("greenFrame");

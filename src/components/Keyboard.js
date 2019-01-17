@@ -9,7 +9,9 @@ class Keyboard extends Component {
       <div className="keyboard">
         <button
           className="button"
-          onClick={() => this.props.getRandomText(this.props.currentArticle)}
+          onClick={() =>
+            this.props.getRandomText(this.props.currentArticle.number)
+          }
         >
           RS
         </button>

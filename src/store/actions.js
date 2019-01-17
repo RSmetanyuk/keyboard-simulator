@@ -5,9 +5,9 @@ export const getArticlesAsync = data => {
   };
 };
 
-export const getArticles = currentArticle => {
+export const getArticles = currentArticleNumber => {
   return dispatch => {
-    if (!currentArticle || currentArticle > 19) {
+    if (!currentArticleNumber || currentArticleNumber > 19) {
       const url =
         "https://newsapi.org/v2/top-headlines?" +
         "country=us&" +

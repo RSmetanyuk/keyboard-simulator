@@ -33,3 +33,7 @@
 .yellowFrame {
   box-shadow: inset 0px 0px 16px 2px rgb(255, 238, 0);
 }
+
+a {
+  color: whitesmoke;
+}

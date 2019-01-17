@@ -15,6 +15,10 @@ class Display extends Component {
             onChange={this.props.onChange}
             onKeyDown={this.props.onKeyDown}
           />
+          <a href={this.props.currentArticle.url}>
+            {this.props.currentArticle.url ? "By:" : ""}{" "}
+            {this.props.currentArticle.author}
+          </a>
         </div>
         <div className="hinge" />
       </React.Fragment>
@@ -61,7 +65,8 @@ const mapStateToProps = state => {
     cursorPosition: state.cursorPosition,
     matchedResult: state.matchedResult,
     matchedKey: state.matchedKey,
-    matchedTarget: state.matchedTarget
+    matchedTarget: state.matchedTarget,
+    currentArticle: state.currentArticle
   };
 };
 

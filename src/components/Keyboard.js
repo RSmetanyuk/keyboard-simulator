@@ -207,7 +207,7 @@ class Keyboard extends Component {
     );
     addKeyColorMark(
       this.props.matchedKey,
-      !this.props.matchedResult,
+      this.props.matchedKey !== this.props.matchedTarget,
       this.refs[this.props.matchedKeyCode],
       this.refs[this.props.matchedTarget.toUpperCase().charCodeAt(0)]
     );
@@ -235,16 +235,9 @@ const addKeyColorMark = (matchedKey, matchedFalse, keyRed, keyGreen) => {
 };
 
 const mapStateToProps = state => {
-  const {
-    matchedKeyCode,
-    matchedResult,
-    matchedKey,
-    matchedTarget,
-    currentArticle
-  } = state;
+  const { matchedKeyCode, matchedKey, matchedTarget, currentArticle } = state;
   return {
     matchedKeyCode,
-    matchedResult,
     matchedKey,
     matchedTarget,
     currentArticle

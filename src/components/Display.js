@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 
 class Display extends Component {
   render() {
-    const { text, onChange, onKeyDown, url, author } = this.props;
+    const { text, onChange, onKeyDown, articles, currentArticle } = this.props;
+    const url = articles ? articles[currentArticle].url : "";
+    const author = articles ? articles[currentArticle].source.name : "";
     return (
       <React.Fragment>
         <div className="display">
@@ -25,14 +27,10 @@ class Display extends Component {
     );
   }
 
-  componentWillUpdate = (nextProps, nextState) => {
-    localStorage.setItem("test", nextProps);
-  };
-
   componentDidUpdate() {
     const { textarea } = this.refs;
     const { cursorPosition, matchedKey, matchedTarget } = this.props;
-    console.log("upd");
+    console.log("updated display");
     setCursorPosition(textarea, cursorPosition);
     removeFrameColor(textarea);
     setFrameColor(textarea, matchedKey, matchedTarget);
@@ -75,8 +73,8 @@ const mapStateToProps = state => {
     cursorPosition,
     matchedKey,
     matchedTarget,
-    url: articles ? articles[currentArticle].url : "",
-    author: articles ? articles[currentArticle].source.name : ""
+    articles,
+    currentArticle
   };
 };
 

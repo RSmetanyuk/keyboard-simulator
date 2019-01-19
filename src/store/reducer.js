@@ -7,8 +7,7 @@ const initialState = {
   lastKeyCode: undefined,
   matchedKey: "",
   matchedKeyCode: undefined,
-  matchedTarget: "",
-  matchedResult: false
+  matchedTarget: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,10 +35,6 @@ const reducer = (state = initialState, action) => {
       newState.matchedTarget = training
         ? text.substr(newState.cursorPosition - 1, 1)
         : "";
-
-      newState.matchedResult = training
-        ? newState.matchedKey === newState.matchedTarget
-        : false;
 
       newState.matchedKeyCode = lastKeyCode;
 

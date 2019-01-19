@@ -78,20 +78,18 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onChange: e =>
-      dispatch({
-        type: "ON_CHANGE",
-        target: e.target
-      }),
-    onKeyDown: e =>
-      dispatch({
-        type: "ON_KEY_DOWN",
-        keyCode: e.keyCode
-      })
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onChange: e =>
+    dispatch({
+      type: "ON_CHANGE",
+      target: e.target
+    }),
+  onKeyDown: e =>
+    dispatch({
+      type: "ON_KEY_DOWN",
+      keyCode: e.keyCode
+    })
+});
 
 export default connect(
   mapStateToProps,

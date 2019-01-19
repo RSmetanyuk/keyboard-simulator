@@ -244,11 +244,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getRandomText: val => dispatch(actionCreator.getArticles(val))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  getRandomText: val => dispatch(actionCreator.getArticles(val))
+});
 
 export default connect(
   mapStateToProps,

@@ -1,9 +1,7 @@
-export const getArticlesAsync = data => {
-  return {
-    type: "GET_RANDOM_TEXT",
-    data
-  };
-};
+export const getArticlesAsync = data => ({
+  type: "GET_RANDOM_TEXT",
+  data
+});
 
 export const getArticles = currentArticleNumber => {
   return dispatch => {

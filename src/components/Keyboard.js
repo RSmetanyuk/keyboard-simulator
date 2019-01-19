@@ -235,12 +235,19 @@ const addKeyColorMark = (matchedKey, matchedFalse, keyRed, keyGreen) => {
 };
 
 const mapStateToProps = state => {
+  const {
+    matchedKeyCode,
+    matchedResult,
+    matchedKey,
+    matchedTarget,
+    currentArticle
+  } = state;
   return {
-    matchedKeyCode: state.matchedKeyCode,
-    matchedResult: state.matchedResult,
-    matchedKey: state.matchedKey,
-    matchedTarget: state.matchedTarget,
-    currentArticle: state.currentArticle
+    matchedKeyCode,
+    matchedResult,
+    matchedKey,
+    matchedTarget,
+    currentArticle
   };
 };
 

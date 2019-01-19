@@ -4,19 +4,20 @@ import { connect } from "react-redux";
 
 class Display extends Component {
   render() {
+    const { text, onChange, onKeyDown, url, author } = this.props;
     return (
       <React.Fragment>
         <div className="display">
           <textarea
-            ref="txt"
+            ref="textarea"
             type="text"
             className="screen"
-            value={this.props.text}
-            onChange={this.props.onChange}
-            onKeyDown={this.props.onKeyDown}
+            value={text}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
           />
-          <a href={this.props.url}>
-            {this.props.url ? "By:" : ""} {this.props.author}
+          <a href={url}>
+            {url ? "By:" : ""} {author}
           </a>
         </div>
         <div className="hinge" />
@@ -29,15 +30,12 @@ class Display extends Component {
   };
 
   componentDidUpdate() {
+    const { textarea } = this.refs;
+    const { cursorPosition, matchedKey, matchedTarget } = this.props;
     console.log("upd");
-    setCursorPosition(this.refs.txt, this.props.cursorPosition);
-    removeFrameColor(this.refs.txt);
-    setFrameColor(
-      this.refs.txt,
-      this.props.matchedKey,
-      this.props.matchedKey,
-      this.props.matchedTarget
-    );
+    setCursorPosition(textarea, cursorPosition);
+    removeFrameColor(textarea);
+    setFrameColor(textarea, matchedKey, matchedTarget);
   }
 }
 
@@ -51,8 +49,8 @@ const removeFrameColor = screen => {
   screen.classList.remove("redFrame");
 };
 
-const setFrameColor = (screen, matched, key, target) => {
-  if (matched) {
+const setFrameColor = (screen, key, target) => {
+  if (key) {
     if (key === target) {
       screen.classList.add("greenFrame");
     } else if (key.toUpperCase() === target.toUpperCase()) {
@@ -64,14 +62,21 @@ const setFrameColor = (screen, matched, key, target) => {
 };
 
 const mapStateToProps = state => {
+  const {
+    text,
+    cursorPosition,
+    matchedKey,
+    matchedTarget,
+    articles,
+    currentArticle
+  } = state;
   return {
-    text: state.text,
-    cursorPosition: state.cursorPosition,
-    matchedResult: state.matchedResult,
-    matchedKey: state.matchedKey,
-    matchedTarget: state.matchedTarget,
-    url: state.articles ? state.articles[state.currentArticle].url : "",
-    author: state.articles ? state.articles[state.currentArticle].author : ""
+    text,
+    cursorPosition,
+    matchedKey,
+    matchedTarget,
+    url: articles ? articles[currentArticle].url : "",
+    author: articles ? articles[currentArticle].source.name : ""
   };
 };
 
@@ -80,7 +85,7 @@ const mapDispatchToProps = dispatch => {
     onChange: e =>
       dispatch({
         type: "ON_CHANGE",
-        e: e.target
+        target: e.target
       }),
     onKeyDown: e =>
       dispatch({

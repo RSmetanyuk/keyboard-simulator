@@ -16,29 +16,32 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case "ON_CHANGE":
-      const oldLength = state.text.length;
-      const newLength = action.e.value.length;
-      const newText = action.e.value;
+      const { selectionStart, value } = action.target;
+      const { text, lastKeyCode } = state;
+
+      const oldLength = text.length;
+      const newLength = value.length;
+      const newText = value;
 
       const typing = newLength > oldLength;
-      const training = typing && !(action.e.selectionStart > oldLength);
+      const training = typing && !(selectionStart > oldLength);
 
-      newState.text = training ? state.text : newText;
-      newState.cursorPosition = action.e.selectionStart;
+      newState.text = training ? text : newText;
+      newState.cursorPosition = selectionStart;
 
       newState.matchedKey = training
-        ? newText.substr(action.e.selectionStart - 1, 1)
+        ? newText.substr(selectionStart - 1, 1)
         : "";
 
       newState.matchedTarget = training
-        ? state.text.substr(newState.cursorPosition - 1, 1)
+        ? text.substr(newState.cursorPosition - 1, 1)
         : "";
 
       newState.matchedResult = training
         ? newState.matchedKey === newState.matchedTarget
         : false;
 
-      newState.matchedKeyCode = state.lastKeyCode;
+      newState.matchedKeyCode = lastKeyCode;
 
       break;
 
@@ -55,7 +58,9 @@ const reducer = (state = initialState, action) => {
       newState.currentArticle++;
       console.log(newState.currentArticle);
       const obj = newState.articles[newState.currentArticle];
-      newState.text = `${obj.title}\n ${obj.content}`;
+      obj.content !== null
+        ? (newState.text = `${obj.title}\n ${obj.content}`)
+        : (newState.text = `${obj.title}\n ${obj.description}`);
       // newState.currentArticle.author = obj.author;
       // newState.currentArticle.url = obj.url;
       newState.matchedKey = "";

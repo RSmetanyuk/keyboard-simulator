@@ -7,7 +7,7 @@ export const getArticlesAsync = data => {
 
 export const getArticles = currentArticleNumber => {
   return dispatch => {
-    if (!currentArticleNumber || currentArticleNumber > 19) {
+    if (currentArticleNumber === undefined || currentArticleNumber === 19) {
       const url =
         "https://newsapi.org/v2/top-headlines?" +
         "country=us&" +
@@ -18,6 +18,7 @@ export const getArticles = currentArticleNumber => {
         .then(data => {
           dispatch(getArticlesAsync(data));
         });
+      console.log("fetching");
     } else {
       dispatch(getArticlesAsync());
     }

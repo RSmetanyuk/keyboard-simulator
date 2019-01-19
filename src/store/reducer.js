@@ -2,10 +2,10 @@ const initialState = {
   text:
     "This is the keyboard blind-typing simulator.\nFor training, set the cursor in front of the text and try to repeat it from real keyboard.\nYou may paste or type your own text for training here.\nPres 'RS' button to download text from web.\nWhile training, you can see next color indicators:\ngreen - the correct key;\nyellow - the correct key but the wrong register;\nred - the wrong key.\nOthers languiges and special charscters havn't keyboard suggestion of right key.",
   articles: undefined,
-  currentArticle: { number: 0, author: "", url: "" },
+  currentArticle: undefined,
   cursorPosition: 0,
-  matchedKey: "",
   lastKeyCode: undefined,
+  matchedKey: "",
   matchedKeyCode: undefined,
   matchedTarget: "",
   matchedResult: false
@@ -49,13 +49,15 @@ const reducer = (state = initialState, action) => {
     case "GET_RANDOM_TEXT":
       if (action.data) {
         newState.articles = action.data.articles;
-        newState.currentArticle.number = 0;
+        newState.currentArticle = -1;
+        console.log(newState.articles);
       }
-      const obj = newState.articles[newState.currentArticle.number];
+      newState.currentArticle++;
+      console.log(newState.currentArticle);
+      const obj = newState.articles[newState.currentArticle];
       newState.text = `${obj.title}\n ${obj.content}`;
-      newState.currentArticle.author = obj.author;
-      newState.currentArticle.url = obj.url;
-      newState.currentArticle.number++;
+      // newState.currentArticle.author = obj.author;
+      // newState.currentArticle.url = obj.url;
       newState.matchedKey = "";
       break;
 

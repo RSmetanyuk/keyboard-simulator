@@ -15,9 +15,8 @@ class Display extends Component {
             onChange={this.props.onChange}
             onKeyDown={this.props.onKeyDown}
           />
-          <a href={this.props.currentArticle.url}>
-            {this.props.currentArticle.url ? "By:" : ""}{" "}
-            {this.props.currentArticle.author}
+          <a href={this.props.url}>
+            {this.props.url ? "By:" : ""} {this.props.author}
           </a>
         </div>
         <div className="hinge" />
@@ -25,7 +24,12 @@ class Display extends Component {
     );
   }
 
+  componentWillUpdate = (nextProps, nextState) => {
+    localStorage.setItem("test", nextProps);
+  };
+
   componentDidUpdate() {
+    console.log("upd");
     setCursorPosition(this.refs.txt, this.props.cursorPosition);
     removeFrameColor(this.refs.txt);
     setFrameColor(
@@ -66,7 +70,8 @@ const mapStateToProps = state => {
     matchedResult: state.matchedResult,
     matchedKey: state.matchedKey,
     matchedTarget: state.matchedTarget,
-    currentArticle: state.currentArticle
+    url: state.articles ? state.articles[state.currentArticle].url : "",
+    author: state.articles ? state.articles[state.currentArticle].author : ""
   };
 };
 

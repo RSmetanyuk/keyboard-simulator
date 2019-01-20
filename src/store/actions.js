@@ -1,11 +1,22 @@
-export const loadLastNewsAsync = data => ({
-  type: "GET_WEB_TEXT",
+export const saveWebText = data => ({
+  type: "WEB_TEXT_SAVE",
   data
 });
 
-export const loadLastNews = currentArticleNumber => {
-  return dispatch => {
-    if (currentArticleNumber === undefined || currentArticleNumber === 19) {
+export const webTextError = () => ({
+  type: "WEB_TEXT_ERROR"
+});
+
+export const nextSavedText = () => ({
+  type: "NEXT_SAVED_TEXT"
+});
+
+export const loadLastNews = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const { currentArticle } = state;
+
+    if (currentArticle === undefined || currentArticle === 19) {
       const url =
         "https://newsapi.org/v2/top-headlines?" +
         "country=us&" +
@@ -14,13 +25,14 @@ export const loadLastNews = currentArticleNumber => {
       fetch(req)
         .then(res => res.json())
         .then(data => {
-          dispatch(loadLastNewsAsync(data));
+          dispatch(saveWebText(data));
+          dispatch(nextSavedText());
         })
         .catch(function(error) {
-          console.log(error);
+          dispatch(webTextError());
         });
     } else {
-      dispatch(loadLastNewsAsync());
+      dispatch(nextSavedText());
     }
   };
 };

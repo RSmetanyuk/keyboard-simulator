@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 
 class Display extends Component {
   render() {
-    const { text, onChange, onKeyDown, articles, currentArticle } = this.props;
-    const url = articles ? articles[currentArticle].url : "";
-    const author = articles ? articles[currentArticle].source.name : "";
+    const { text, url, source, onChange, onKeyDown } = this.props;
+
     return (
       <React.Fragment>
         <div className="display">
@@ -19,7 +18,7 @@ class Display extends Component {
             onKeyDown={onKeyDown}
           />
           <a href={url}>
-            {url ? "By:" : ""} {author}
+            {url ? "By:" : ""} {source}
           </a>
         </div>
         <div className="hinge" />
@@ -59,21 +58,15 @@ const setFrameColor = (screen, key, target) => {
 };
 
 const mapStateToProps = state => {
-  const {
-    text,
-    cursorPosition,
-    matchedKey,
-    matchedTarget,
-    articles,
-    currentArticle
-  } = state;
+  const { cursorPosition, matchedKey, matchedTarget } = state;
+  const { text, url, source } = state.displayed;
   return {
-    text,
     cursorPosition,
     matchedKey,
     matchedTarget,
-    articles,
-    currentArticle
+    text,
+    url,
+    source
   };
 };
 

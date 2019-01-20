@@ -1,6 +1,10 @@
 const initialState = {
-  text:
-    "This is the keyboard blind-typing simulator.\nFor training, set the cursor in front of the text and try to repeat it from real keyboard.",
+  displayed: {
+    text:
+      "This is the keyboard blind-typing simulator.\nFor training, set the cursor in front of the text and try to repeat it from real keyboard.",
+    url: "",
+    source: ""
+  },
   articles: undefined,
   currentArticle: undefined,
   cursorPosition: 0,
@@ -13,30 +17,36 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const newState = { ...state };
 
+  const clearLink = () => {
+    newState.displayed.url = "";
+    newState.displayed.source = "";
+  };
+
   switch (action.type) {
     case "ON_CHANGE":
       const { selectionStart, value } = action.target;
-      const { text, lastKeyCode } = state;
+      const { text } = state.displayed;
 
       const oldLength = text.length;
       const newLength = value.length;
-      const newText = value;
 
       const typing = newLength > oldLength;
       const training = typing && !(selectionStart > oldLength);
 
-      newState.text = training ? text : newText;
+      newState.displayed.text = training ? text : value;
       newState.cursorPosition = selectionStart;
 
-      newState.matchedKey = training
-        ? newText.substr(selectionStart - 1, 1)
-        : "";
+      newState.matchedKey = training ? value.substr(selectionStart - 1, 1) : "";
 
       newState.matchedTarget = training
         ? text.substr(newState.cursorPosition - 1, 1)
         : "";
 
-      newState.matchedKeyCode = lastKeyCode;
+      newState.matchedKeyCode = state.lastKeyCode;
+
+      if (newLength === 0) {
+        clearLink();
+      }
 
       break;
 
@@ -44,21 +54,28 @@ const reducer = (state = initialState, action) => {
       newState.lastKeyCode = action.keyCode;
       break;
 
-    case "GET_WEB_TEXT":
-      if (action.data) {
-        newState.articles = action.data.articles;
-        newState.currentArticle = -1;
-      }
-      newState.currentArticle++;
-      const obj = newState.articles[newState.currentArticle];
-      obj.content !== null
-        ? (newState.text = `${obj.title}\n ${obj.content}`)
-        : (newState.text = `${obj.title}\n ${obj.description}`);
-      newState.matchedKey = "";
+    case "WEB_TEXT_SAVE":
+      newState.articles = action.data.articles;
+      newState.currentArticle = -1;
+      break;
+
+    case "WEB_TEXT_ERROR":
+      newState.displayed.text = "Failed to load new text from web!";
+      clearLink();
       break;
 
     case "NEXT_SAVED_TEXT":
-      return state;
+      newState.currentArticle === 19
+        ? (newState.currentArticle = 0)
+        : newState.currentArticle++;
+      const obj = newState.articles[newState.currentArticle];
+      newState.displayed.text = `${obj.title}\n ${obj.content ||
+        obj.description ||
+        ""}`;
+      newState.displayed.url = obj.url;
+      newState.displayed.source = obj.source.name;
+      newState.matchedKey = "";
+      break;
 
     default:
       return state;

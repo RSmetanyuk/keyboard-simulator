@@ -1,6 +1,6 @@
 const initialState = {
   text:
-    "This is the keyboard blind-typing simulator.\nFor training, set the cursor in front of the text and try to repeat it from real keyboard.\nYou may paste or type your own text for training here.\nPres 'RS' button to download text from web.\nWhile training, you can see next color indicators:\ngreen - the correct key;\nyellow - the correct key but the wrong register;\nred - the wrong key.\nOthers languiges and special charscters havn't keyboard suggestion of right key.",
+    "This is the keyboard blind-typing simulator.\nFor training, set the cursor in front of the text and try to repeat it from real keyboard.",
   articles: undefined,
   currentArticle: undefined,
   cursorPosition: 0,
@@ -44,22 +44,21 @@ const reducer = (state = initialState, action) => {
       newState.lastKeyCode = action.keyCode;
       break;
 
-    case "GET_RANDOM_TEXT":
+    case "GET_WEB_TEXT":
       if (action.data) {
         newState.articles = action.data.articles;
         newState.currentArticle = -1;
-        console.log(newState.articles);
       }
       newState.currentArticle++;
-      console.log(newState.currentArticle);
       const obj = newState.articles[newState.currentArticle];
       obj.content !== null
         ? (newState.text = `${obj.title}\n ${obj.content}`)
         : (newState.text = `${obj.title}\n ${obj.description}`);
-      // newState.currentArticle.author = obj.author;
-      // newState.currentArticle.url = obj.url;
       newState.matchedKey = "";
       break;
+
+    case "NEXT_SAVED_TEXT":
+      return state;
 
     default:
       return state;

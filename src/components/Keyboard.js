@@ -9,9 +9,9 @@ class Keyboard extends Component {
       <div className="keyboard">
         <button
           className="button"
-          onClick={() => this.props.getRandomText(this.props.currentArticle)}
+          onClick={() => this.props.getWebText(this.props.currentArticle)}
         >
-          RS
+          web
         </button>
 
         <div className="section-a">
@@ -245,7 +245,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getRandomText: val => dispatch(actionCreator.getArticles(val))
+  getWebText: val => dispatch(actionCreator.loadLastNews(val))
 });
 
 export default connect(

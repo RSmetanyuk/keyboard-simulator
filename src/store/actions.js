@@ -1,9 +1,9 @@
-export const getArticlesAsync = data => ({
-  type: "GET_RANDOM_TEXT",
+export const loadLastNewsAsync = data => ({
+  type: "GET_WEB_TEXT",
   data
 });
 
-export const getArticles = currentArticleNumber => {
+export const loadLastNews = currentArticleNumber => {
   return dispatch => {
     if (currentArticleNumber === undefined || currentArticleNumber === 19) {
       const url =
@@ -14,11 +14,13 @@ export const getArticles = currentArticleNumber => {
       fetch(req)
         .then(res => res.json())
         .then(data => {
-          dispatch(getArticlesAsync(data));
+          dispatch(loadLastNewsAsync(data));
+        })
+        .catch(function(error) {
+          console.log(error);
         });
-      console.log("fetching");
     } else {
-      dispatch(getArticlesAsync());
+      dispatch(loadLastNewsAsync());
     }
   };
 };

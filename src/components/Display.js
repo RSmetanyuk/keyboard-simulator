@@ -30,7 +30,6 @@ class Display extends Component {
   componentDidUpdate() {
     const { textarea } = this.refs;
     const { cursorPosition, matchedKey, matchedTarget } = this.props;
-    console.log("updated display");
     setCursorPosition(textarea, cursorPosition);
     removeFrameColor(textarea);
     setFrameColor(textarea, matchedKey, matchedTarget);

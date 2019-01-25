@@ -58,8 +58,8 @@ const setFrameColor = (screen, key, target) => {
 };
 
 const mapStateToProps = state => {
-  const { cursorPosition, matchedKey, matchedTarget } = state;
-  const { text, url, source } = state.displayed;
+  const { displayed, cursorPosition, matchedKey, matchedTarget } = state;
+  const { text, url, source } = displayed;
   return {
     cursorPosition,
     matchedKey,

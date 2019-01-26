@@ -9,4 +9,9 @@ const store = configureStore();
 
 render(<Root store={store} />, document.getElementById("root"));
 
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker.register('/serviceWorker.js');
+//   //console.log("serviceWorker");
+// }
+
 serviceWorker.register();

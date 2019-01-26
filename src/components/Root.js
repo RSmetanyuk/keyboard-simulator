@@ -11,9 +11,9 @@ const Root = ({ store }) => (
       <div>
         <Navigation />
         <Switch>
-          <Route path="/" component={App} exact />
-          <Route path="/about" component={About} />
-          <Route render={() => <Redirect to="/" />} />
+          <Route path="/keyboard-simulator/" component={App} exact />
+          <Route path="/keyboard-simulator/about" component={About} exact />
+          <Route render={() => <Redirect to="/keyboard-simulator/" />} />
         </Switch>
       </div>
     </BrowserRouter>

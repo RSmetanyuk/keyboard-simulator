@@ -2,7 +2,7 @@
   "name": "2nd-project_keyboard-simulator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/RSmetanyuk/keyboard-simulator",
+  "homepage": "https://rsmetanyuk.github.io/keyboard-simulator",
   "dependencies": {
     "lodash": "^4.17.11",
     "react": "^16.7.0",

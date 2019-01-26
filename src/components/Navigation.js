@@ -3,10 +3,19 @@ import { NavLink } from "react-router-dom";
 
 const Navigation = () => (
   <div className="navBar">
-    <NavLink className="navLink" to="/" exact activeStyle={{ color: "blue" }}>
+    <NavLink
+      className="navLink"
+      to="/keyboard-simulator/"
+      exact
+      activeStyle={{ color: "blue" }}
+    >
       App
     </NavLink>
-    <NavLink className="navLink" to="/about" activeStyle={{ color: "blue" }}>
+    <NavLink
+      className="navLink"
+      to="/keyboard-simulator/about"
+      activeStyle={{ color: "blue" }}
+    >
       About
     </NavLink>
   </div>

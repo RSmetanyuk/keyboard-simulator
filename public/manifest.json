@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Keyboard simulator",
+  "name": "Keyboard simulator by RSmetanyuk",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,13 +1,13 @@
 {
-  "main.css": "/RSmetanyuk/keyboard-simulator/static/css/main.37a51918.chunk.css",
-  "main.js": "/RSmetanyuk/keyboard-simulator/static/js/main.cbaae4a7.chunk.js",
-  "main.js.map": "/RSmetanyuk/keyboard-simulator/static/js/main.cbaae4a7.chunk.js.map",
-  "static/js/1.5033b8a5.chunk.js": "/RSmetanyuk/keyboard-simulator/static/js/1.5033b8a5.chunk.js",
-  "static/js/1.5033b8a5.chunk.js.map": "/RSmetanyuk/keyboard-simulator/static/js/1.5033b8a5.chunk.js.map",
-  "runtime~main.js": "/RSmetanyuk/keyboard-simulator/static/js/runtime~main.61ecbe43.js",
-  "runtime~main.js.map": "/RSmetanyuk/keyboard-simulator/static/js/runtime~main.61ecbe43.js.map",
-  "static/css/main.37a51918.chunk.css.map": "/RSmetanyuk/keyboard-simulator/static/css/main.37a51918.chunk.css.map",
-  "index.html": "/RSmetanyuk/keyboard-simulator/index.html",
-  "precache-manifest.ccf388d7a7a58a146ce6a147700d5ff0.js": "/RSmetanyuk/keyboard-simulator/precache-manifest.ccf388d7a7a58a146ce6a147700d5ff0.js",
-  "service-worker.js": "/RSmetanyuk/keyboard-simulator/service-worker.js"
+  "main.css": "/keyboard-simulator/static/css/main.37a51918.chunk.css",
+  "main.js": "/keyboard-simulator/static/js/main.e444b1c6.chunk.js",
+  "main.js.map": "/keyboard-simulator/static/js/main.e444b1c6.chunk.js.map",
+  "static/js/1.5033b8a5.chunk.js": "/keyboard-simulator/static/js/1.5033b8a5.chunk.js",
+  "static/js/1.5033b8a5.chunk.js.map": "/keyboard-simulator/static/js/1.5033b8a5.chunk.js.map",
+  "runtime~main.js": "/keyboard-simulator/static/js/runtime~main.59856450.js",
+  "runtime~main.js.map": "/keyboard-simulator/static/js/runtime~main.59856450.js.map",
+  "static/css/main.37a51918.chunk.css.map": "/keyboard-simulator/static/css/main.37a51918.chunk.css.map",
+  "index.html": "/keyboard-simulator/index.html",
+  "precache-manifest.dd6c13cb490f323e0a01af8258795b18.js": "/keyboard-simulator/precache-manifest.dd6c13cb490f323e0a01af8258795b18.js",
+  "service-worker.js": "/keyboard-simulator/service-worker.js"
 }

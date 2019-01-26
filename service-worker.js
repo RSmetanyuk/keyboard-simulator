@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/RSmetanyuk/keyboard-simulator/precache-manifest.ccf388d7a7a58a146ce6a147700d5ff0.js"
+  "/keyboard-simulator/precache-manifest.dd6c13cb490f323e0a01af8258795b18.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/RSmetanyuk/keyboard-simulator/index.html", {
+workbox.routing.registerNavigationRoute("/keyboard-simulator/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

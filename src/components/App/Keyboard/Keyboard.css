@@ -1,6 +1,7 @@
 .keyboard {
   width: 800px;
-  height: 295px;
+  /* height: 295px; */
+  height: 270px;
   background-color: #111;
   margin: 0px auto;
   border-radius: 9px;

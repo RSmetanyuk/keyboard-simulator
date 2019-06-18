@@ -1,14 +1,14 @@
 import React from "react";
-import App from "../App";
-import About from "./About";
-import Navigation from "./Navigation";
+import App from "./App/App";
+import About from "./About/About";
+import Navigation from "./Navigations/Navigation";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>
-      <div>
+      <div className="root">
         <Navigation />
         <Switch>
           <Route path="/keyboard-simulator/" component={App} exact />

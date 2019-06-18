@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Keyboard from "./components/Keyboard";
-import Display from "./components/Display";
+import Keyboard from "./Keyboard/Keyboard";
+import Display from "./Display/Display";
 
 class App extends Component {
   render() {

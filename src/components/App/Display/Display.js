@@ -39,7 +39,7 @@ const setCursorPosition = (element, position) => {
   element.setSelectionRange(position, position);
 };
 
-const removeFrameColor = screen => {
+const removeFrameColor = (screen) => {
   screen.classList.remove("yellowFrame");
   screen.classList.remove("greenFrame");
   screen.classList.remove("redFrame");
@@ -57,7 +57,7 @@ const setFrameColor = (screen, key, target) => {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { displayed, cursorPosition, matchedKey, matchedTarget } = state;
   const { text, url, source } = displayed;
   return {
@@ -70,13 +70,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onChange: e =>
+const mapDispatchToProps = (dispatch) => ({
+  onChange: (e) =>
     dispatch({
       type: "ON_CHANGE",
       target: e.target
     }),
-  onKeyDown: e =>
+  onKeyDown: (e) =>
     dispatch({
       type: "ON_KEY_DOWN",
       keyCode: e.keyCode

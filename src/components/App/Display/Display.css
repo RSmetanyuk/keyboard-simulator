@@ -1,6 +1,7 @@
 .display {
   width: 800px;
-  height: 335px;
+  /* height: 335px; */
+  height: 265px;
   background-color: #111;
   margin: 0px auto;
   border-radius: 9px;
@@ -9,7 +10,7 @@
 }
 .screen {
   width: 775px;
-  height: 290px;
+  height: 220px;
   background-color: #eee;
   margin: auto;
   padding: 10px;

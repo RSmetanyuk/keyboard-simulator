@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Keyboard.css";
 import { connect } from "react-redux";
-import * as actionCreator from "../store/actions";
+import * as actionCreator from "../../../store/actions";
 
 class Keyboard extends Component {
   render() {
@@ -234,7 +234,7 @@ const addKeyColorMark = (matchedKey, matchedFalse, keyRed, keyGreen) => {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { matchedKeyCode, matchedKey, matchedTarget, currentArticle } = state;
   return {
     matchedKeyCode,
@@ -244,8 +244,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getWebText: val => dispatch(actionCreator.loadLastNews(val))
+const mapDispatchToProps = (dispatch) => ({
+  getWebText: (val) => dispatch(actionCreator.loadLastNews(val))
 });
 
 export default connect(
